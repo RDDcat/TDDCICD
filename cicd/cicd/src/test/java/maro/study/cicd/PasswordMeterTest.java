@@ -43,4 +43,10 @@ public class PasswordMeterTest {
         assertPasswordStrength("123abcC", PasswordStrength.NORMAL);
         assertPasswordStrength("Cabc12", PasswordStrength.NORMAL);
     }
+
+    @DisplayName("대문자 없음, 다른 조건 충족")
+    @Test
+    void digitAndLength() {
+        assertPasswordStrength("abcd1234", PasswordStrength.NORMAL);
+    }
 }
