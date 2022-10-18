@@ -29,5 +29,13 @@ public class PasswordMeterTest {
     void meetAllRules() {
         PasswordStrength result = passwordMeter.meter("abcABC123");
         assertThat(result).isEqualTo(PasswordStrength.STRONG);
+        PasswordStrength result2 = passwordMeter.meter("123abcABC");
+        assertThat(result2).isEqualTo(PasswordStrength.STRONG);
+    }
+    @DisplayName("길이가 8미만, 다른 조건은 충족하는 경우")
+    @Test
+    void digitAndUppercase() {
+        PasswordStrength result = passwordMeter.meter("abcC123");
+        assertThat(result).isEqualTo(PasswordStrength.NORMAL);
     }
 }
