@@ -1,7 +1,9 @@
 package maro.study.cicd;
 
 public class PasswordMeter {
-    public void meter(String pw) {
-        throw new IllegalArgumentException();
+    public PasswordStrength meter(String pw) {
+        if(pw == null || pw.isEmpty())
+            throw new IllegalArgumentException();
+        return PasswordStrength.STRONG;
     }
 }
