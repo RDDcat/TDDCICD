@@ -10,17 +10,20 @@ public class PasswordMeter {
             return PasswordStrength.NORMAL;
         }
 
-        boolean foundUppercase = false;
-        for(char ch : pw.toCharArray()){
-            if(ch >= 'A' && ch <= 'Z') {
-                foundUppercase = true;
-                break;
-            }
-        }
+        boolean foundUppercase = isFoundUppercase(pw);
         if(!foundUppercase){
             return PasswordStrength.NORMAL;
         }
 
         return PasswordStrength.STRONG;
+    }
+
+    private static boolean isFoundUppercase(String pw) {
+        for(char ch : pw.toCharArray()){
+            if(ch >= 'A' && ch <= 'Z') {
+                return true;
+            }
+        }
+        return false;
     }
 }
