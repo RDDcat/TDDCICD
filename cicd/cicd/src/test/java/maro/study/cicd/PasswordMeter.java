@@ -2,16 +2,11 @@ package maro.study.cicd;
 
 public class PasswordMeter {
     public PasswordStrength meter(String pw) {
-        if(pw == null || pw.isEmpty())
-            throw new IllegalArgumentException();
+        checkIllegalArgumentException(pw);
 
-        boolean lengthRule = pw.length() >=8;
-        boolean foundUppercase = isFoundUppercase(pw);
-        boolean foundDigit = isFoundDigit(pw);
         int metCount = 0;
-        if(lengthRule) metCount++;
-        if(foundUppercase) metCount++;
-        if(foundDigit) metCount++;
+        metCount = getMetCount(pw, metCount);
+
         if(metCount == 1){
             return PasswordStrength.WEAK;
         }
@@ -20,6 +15,22 @@ public class PasswordMeter {
         }
 
         return PasswordStrength.STRONG;
+    }
+
+    private int getMetCount(String pw, int metCount) {
+        boolean lengthRule = pw.length() >=8;
+        boolean foundUppercase = isFoundUppercase(pw);
+        boolean foundDigit = isFoundDigit(pw);
+
+        if(lengthRule) metCount++;
+        if(foundUppercase) metCount++;
+        if(foundDigit) metCount++;
+        return metCount;
+    }
+
+    private static void checkIllegalArgumentException(String pw) {
+        if(pw == null || pw.isEmpty())
+            throw new IllegalArgumentException();
     }
 
     private boolean isFoundDigit(String pw) {
