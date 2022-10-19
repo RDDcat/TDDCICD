@@ -9,6 +9,9 @@ public class PasswordMeter {
         boolean foundUppercase = isFoundUppercase(pw);
         boolean foundDigit = isFoundDigit(pw);
 
+        if(lengthRule && !foundUppercase && !foundDigit){
+            return PasswordStrength.WEAK;
+        }
         if(!lengthRule){
             return PasswordStrength.NORMAL;
         }
