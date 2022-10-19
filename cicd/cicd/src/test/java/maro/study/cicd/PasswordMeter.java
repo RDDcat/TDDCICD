@@ -6,15 +6,15 @@ public class PasswordMeter {
             throw new IllegalArgumentException();
 
         boolean lengthRule = pw.length() >=8;
+        boolean foundUppercase = isFoundUppercase(pw);
+        boolean foundDigit = isFoundDigit(pw);
+
         if(!lengthRule){
             return PasswordStrength.NORMAL;
         }
-
-        boolean foundUppercase = isFoundUppercase(pw);
         if(!foundUppercase){
             return PasswordStrength.NORMAL;
         }
-        boolean foundDigit = isFoundDigit(pw);
         if(!foundDigit){
             return PasswordStrength.NORMAL;
         }
