@@ -12,6 +12,9 @@ public class PasswordMeter {
         if(lengthRule && !foundUppercase && !foundDigit){
             return PasswordStrength.WEAK;
         }
+        if(!lengthRule && foundUppercase && !foundDigit){
+            return PasswordStrength.WEAK;
+        }
         if(!lengthRule){
             return PasswordStrength.NORMAL;
         }
