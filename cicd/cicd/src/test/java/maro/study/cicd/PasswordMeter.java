@@ -8,20 +8,14 @@ public class PasswordMeter {
         boolean lengthRule = pw.length() >=8;
         boolean foundUppercase = isFoundUppercase(pw);
         boolean foundDigit = isFoundDigit(pw);
-
-        if(lengthRule && !foundUppercase && !foundDigit){
+        int metCount = 0;
+        if(lengthRule) metCount++;
+        if(foundUppercase) metCount++;
+        if(foundDigit) metCount++;
+        if(metCount == 1){
             return PasswordStrength.WEAK;
         }
-        if(!lengthRule && foundUppercase && !foundDigit){
-            return PasswordStrength.WEAK;
-        }
-        if(!lengthRule){
-            return PasswordStrength.NORMAL;
-        }
-        if(!foundUppercase){
-            return PasswordStrength.NORMAL;
-        }
-        if(!foundDigit){
+        if(metCount == 2){
             return PasswordStrength.NORMAL;
         }
 
