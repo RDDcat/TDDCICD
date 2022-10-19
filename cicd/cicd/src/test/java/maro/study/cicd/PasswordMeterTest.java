@@ -61,4 +61,10 @@ public class PasswordMeterTest {
     void length() {
         assertPasswordStrength("abcedhiowww", PasswordStrength.WEAK);
     }
+
+    @DisplayName("대문자만 충족")
+    @Test
+    void uppercase() {
+        assertPasswordStrength("Abcedh", PasswordStrength.WEAK);
+    }
 }
