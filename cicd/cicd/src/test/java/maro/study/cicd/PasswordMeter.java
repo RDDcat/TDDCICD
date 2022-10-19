@@ -14,8 +14,21 @@ public class PasswordMeter {
         if(!foundUppercase){
             return PasswordStrength.NORMAL;
         }
+        boolean foundDigit = isFoundDigit(pw);
+        if(!foundDigit){
+            return PasswordStrength.NORMAL;
+        }
 
         return PasswordStrength.STRONG;
+    }
+
+    private boolean isFoundDigit(String pw) {
+        for(char ch : pw.toCharArray()){
+            if(ch >= '0' && ch <= '9') {
+                return true;
+            }
+        }
+        return false;
     }
 
     private static boolean isFoundUppercase(String pw) {

@@ -49,4 +49,10 @@ public class PasswordMeterTest {
     void digitAndLength() {
         assertPasswordStrength("abcd1234", PasswordStrength.NORMAL);
     }
+
+    @DisplayName("숫자 없음, 다른 조건 충족")
+    @Test
+    void uppercaseAndLength() {
+        assertPasswordStrength("ABCDabcde", PasswordStrength.NORMAL);
+    }
 }
